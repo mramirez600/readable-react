@@ -8,13 +8,14 @@ import { CONTENT_POSTS } from '../actions/constants';
 import ContentControl from './content-control';
 import CommentList from './comment-list';
 import { formatDate } from '../utils/helper';
+import NotFound from './NotFound';
 
 const PostDetail = (props) => {
   const { id, title, body, author, timestamp, voteScore, comments = [],
     onUpvotePost, onDownvotePost } = props;
-  
-  return (
-    <div>
+    return !id
+      ? <NotFound />
+      : <div>
       <div className='content-container-post'>
        
         <div className='post-detail'>
@@ -34,7 +35,7 @@ const PostDetail = (props) => {
       <LineSeparator />
       <CommentList postId={id} comments={comments} />
     </div>
-  )
+  
 }
 
 export default connect(
