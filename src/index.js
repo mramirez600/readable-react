@@ -12,10 +12,6 @@ import reducers from './reducers';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-var NotFound = ({match}) => (
-<div>{match.url} NOT FOUND</div>
-)
-
 const store = createStore(
   reducers,
   composeEnhancers(
@@ -26,9 +22,7 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-    <Switch>
-      <Route path='/' component={App}/>
-    </Switch>  
+      <Route path='/' component={App}/>   
     </BrowserRouter>
   </Provider>, document.getElementById('root')
 );
