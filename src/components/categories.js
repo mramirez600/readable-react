@@ -12,10 +12,10 @@ const Categories = ({ location, categories }) => (
     <div className='sidebar-section-content'>
     {categories.map((category, index) => (
       <div className='sidebar-section-content-item' key={index}>
-        {location.pathname === `/categories/${category.name}` ?
+        {location.pathname === `/${category.name}` ?
         <span>{capitalizeFirst(category.name)}</span>
         :
-        <Link to={`/categories/${category.name}`}>{capitalizeFirst(category.name)}</Link>
+        <Link to={`/${category.name}`}>{capitalizeFirst(category.name)}</Link>
         }
       </div>
     ))}
@@ -26,5 +26,6 @@ const Categories = ({ location, categories }) => (
 const mapStateToProps = ({ categories }) => ({
   categories
 })
+
 
 export default withRouter(connect(mapStateToProps)(Categories));

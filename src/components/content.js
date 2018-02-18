@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { withRouter, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import PostForm from './post-form';
 import PostList from './post-list';
 import PostDetail from './post-detail';
 import { getSortedPostsWithSortedComments } from '../selectors';
+import PostSummary from './post-summary';
 
 class Content extends Component {
   filterPostByCategory(posts, category) {
@@ -27,6 +27,7 @@ class Content extends Component {
               <PostList posts={posts} />
             )}
           />
+          
           <Route exact
             path='/posts/new'
             component={PostForm}
@@ -38,15 +39,15 @@ class Content extends Component {
             )}
           />
           <Route exact
-            path='/posts/:id' 
+            path='/:category/:id' 
             render={({ match }) => (
               <PostDetail {...this.filterPostById(posts, match.params.id)} />
             )}
           />
           <Route exact
-            path='/categories/:name'
+            path='/:category'
             render={({ match }) => (
-              <PostList posts={this.filterPostByCategory(posts, match.params.name)} />
+              <PostList posts={this.filterPostByCategory(posts, match.params.category)} />
             )}
           />
         </Switch>
